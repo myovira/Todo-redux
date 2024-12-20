@@ -2,13 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const todoSlice=createSlice({
     name:"todo",
-    InitialState: {
+    initialState: {
         tasks:[]
     },
     reducers:{
 
         addTodo: (state, action)=>{
-            state.tasks.push=(action.payload);//{id: nanoid(), todo: "learn something new today", done:false}
+
+            console.log("action looks like",action);
+            state.tasks.push(action.payload);//{id: nanoid(), todo: "learn something new today", done:false}
         },
 
 
