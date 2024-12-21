@@ -15,7 +15,7 @@ const App = () => {
 
   function handleAddTodo() {
 
-        const todoObj = {
+    const todoObj = {
       id: nanoid(),
       todo: task,
       done: false,
@@ -66,10 +66,10 @@ const App = () => {
                   done={todo.done}
                 />
               );
-             }
+            }
           })}
         </div>
-       
+
         <div className="w-[2px] bg-slate-400 mx-5"></div>
         <div className="flex flex-col gap-4 w-1/2">
           {todos.map((todo) => {
@@ -91,45 +91,49 @@ const App = () => {
         </div>
       </div>
     </div>
- 
-    
+
+
   )
 
-function TodoComponent({ title, id, done }) {
+  function TodoComponent({ title, id, done }) {
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  function handleDeleteTodo(id) {
+    function handleDeleteTodo(id) {
 
-    dispatch(deleteTodo(id));
+      dispatch(deleteTodo(id));
 
+    }
+
+    function handledoneTodo(id) {
+      dispatch(doneTodo(id));
+    }
+
+    return (
+      <div className="flex gap-8 text-slate-50 items-center">
+        <p>{title}</p>
+        <button
+          className= {`border ${ 
+            done 
+            ? " border-pink-400 text-pink-400" 
+            : " border-blue-500  text-blue-500"
+          } px-4 py-2 rounded-md font-bold
+           hover:bg-slate-500`}
+          onClick={() => handledoneTodo(id)}
+        >
+          {done ? "Mark as Incomplete" : "Mark as Complete"}
+        </button>
+        <button
+          className="border border-pink-400 px-4 py-2 rounded-md font-bold text-pink-400
+  hover:bg-slate-500"
+          onClick={() => handleDeleteTodo(id)}
+        >
+          Delete
+        </button>
+      </div>
+    )
   }
 
-  function handledoneTodo(id){
-    dispatch(doneTodo(id));
-  }
-
-  return (
-    <div className="flex gap-8 text-slate-50 items-center">
-      <p>{title}</p>
-      <button
-        className="border border-blue-500 px-4 py-2 rounded-md font-bold text-blue-500
-  hover:bg-slate-500"
-   onClick={() => handledoneTodo(id)}
-      >
-        Done
-      </button>
-      <button
-        className="border border-pink-400 px-4 py-2 rounded-md font-bold text-pink-400
-  hover:bg-slate-500"
-        onClick={() => handleDeleteTodo(id)}
-      >
-        Delete
-      </button>
-    </div>
-  )
-}
-    
 }
 
 export default App
